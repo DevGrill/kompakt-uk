@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as service from './someservicethatexportsaservice.service';
+import { BankManager } from './bankManager.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import * as service from './someservicethatexportsaservice.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private service: service.service) {}
+  constructor(private bankManager: BankManager) {}
 
   loggedIn: boolean = false;
   msg: string = '';
@@ -16,15 +16,15 @@ export class AppComponent {
     const code: any = inputEvent.target.value;
 
     if (inputEvent.target.value.length === 4) {
-      this.loggedIn = this.service.checkCode(code);
+      this.loggedIn = this.bankManager.checkCode(code);
     }
   }
 
   withdrawMoney(amount: number) {
-    this.msg = this.service.withdraw(amount);
+    this.msg = this.bankManager.withdraw(amount);
   }
 
   getBalance() {
-    return this.service.getBalance();
+    return this.bankManager.getBalance();
   }
 }
