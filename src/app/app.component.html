@@ -1,0 +1,9 @@
+<ng-container *ngIf="!loggedIn">
+  <input (keyup)="codeInput($event)" />
+</ng-container>
+
+<ng-container *ngIf="loggedIn">
+  <p>Logged in!, current balance = {{ getBalance() }}</p>
+  <button (click)="withdrawMoney(1000)">withdraw 1000</button>
+  <p>{{ msg }}</p>
+</ng-container>
